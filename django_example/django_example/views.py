@@ -25,7 +25,18 @@ def vk_com(request):
             if 'unread' in i:
                 count_unread = count_unread + 1
         resp = HttpResponse()
-        resp.write(str(data_vk_vol_friends['count'])+"  "+str(count_unread))
+        resp.write(str(data_vk_vol_friends['count'])+"_"+str(count_unread))
+        resp.status_code = 200
+    return resp
+
+
+# NewsAPI.org
+
+def news_com(request, num):
+    if request.method == 'GET':
+        resp2 = requests.get("https://newsapi.org/v2/top-headlines?country=ru&apiKey=38b28e3e9928480ba1180cf244e0b8fd")
+        resp = HttpResponse()
+        resp.write(resp2.json()['articles'][int(num)]['title'])
         resp.status_code = 200
     return resp
 

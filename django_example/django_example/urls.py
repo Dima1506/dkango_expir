@@ -21,5 +21,6 @@ app_name = 'riddles'
 
 urlpatterns = [
     url(r'^vk', views.vk_com),
-    url(r'^birg', views.birg_com)
+    url(r'^birg', views.birg_com),
+    url(r'^news/(?P<num>\d{1})/$', views.news_com)
 ]
